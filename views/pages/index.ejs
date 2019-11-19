@@ -1,0 +1,28 @@
+<% include header %>
+<div class="ui main container">
+	<h1>Grow System Monitor</h1>
+	<div class="row" id="search">
+		<div class="ui form">
+			<div class="four fields">
+      			<div class="field">
+        			<input type="text" id ="from" name="from" placeholder="from">
+      			</div>
+      			<div class="field">
+        			<input type="text" id ="to" name="to" placeholder="to">
+				</div>
+				<div class="field">
+      				<select class="ui fluid dropdown" name="temperature" id="temperature">
+        				<option value="F">Fahrenheit</option>
+        				<option value="C">Celcius</option>
+        			</select>
+      			</div>
+				<div class="field">
+					<div class="ui primary basic button" onclick="getresult()" tabindex="0">Show result</div>
+				</div>
+			</div>
+			
+	<div class="row" id="graph">
+		<canvas id="myChart" ></canvas>
+	</div>
+</div>
+<% include footer %>
