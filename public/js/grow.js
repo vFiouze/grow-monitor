@@ -85,6 +85,17 @@ plotChart = function(data){
                 		display:true,
                 		labelString:'Humidity (%)'
                 	}
+            	}],
+            	xAxes:[{
+            		scaleLabel:{
+            			display:true,
+            			labelString:'Date (YYYY-MM-DD HH:mm:ss)',
+            		},
+            		ticks:{
+            			autoSkip: true,
+                    	maxRotation: 90,
+                    	minRotation: 90
+            		}
             	}]
         	}
     	}   
