@@ -14,8 +14,13 @@ getresult = function(){
 }
 
 plotChart = function(data){
-	//preparing the dataset
+	//destroy previous chart
+	if(graph){
+		graph.destroy()	
+	}
+	
 
+	//preparing the dataset
 	var temperature = []
 	var humidity = []
 	var labels = []
@@ -100,6 +105,7 @@ plotChart = function(data){
         	}
     	}   
 	});
+	this.graph = myChart
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -111,3 +117,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	from.value =  nowMinus12Hours.format('YYYY-MM-D HH:mm:ss')
 	getresult()
 })
+
+var graph = null

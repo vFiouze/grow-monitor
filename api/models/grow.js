@@ -21,7 +21,7 @@ class Grow {
 				}
 				if(temperature=='F'){
 					for (var i = 0; i < rows.length; i++) {
-						rows[i].temperature = rows[i].temperature*9/5 +32
+						rows[i].temperature = Math.round((rows[i].temperature*9/5 +32)*10)/10
 					}
 				}
 				callback(rows)
