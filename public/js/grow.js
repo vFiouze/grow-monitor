@@ -1,6 +1,6 @@
 getresult = function(){
-	var from = document.getElementById('from').value
-	var to = document.getElementById('to').value
+	var from = moment(document.getElementById('from').value).format('YYYY-MM-DD HH:mm:ss')
+	var to = moment(document.getElementById('to').value).format('YYYY-MM-DD HH:mm:ss')
 	var temperature=document.getElementById('temperature')
 	var tempRequest = temperature.options[temperature.selectedIndex].value
 	var myInit = { method: 'POST',
@@ -29,7 +29,7 @@ plotChart = function(data){
 	for (var i = 0; i < data.rows.length; i++) {
 			temperature.push(parseFloat(data.rows[i].temperature))
 			humidity.push(data.rows[i].humidity)
-			labels.push(data.rows[i].date)
+			labels.push(moment(data.rows[i].date).format('MMMM D, YYYY h:mm A'))
 			averageTemp = averageTemp+parseFloat(data.rows[i].temperature)
 	}
 	averageTemp = averageTemp/data.rows.length
@@ -70,7 +70,7 @@ plotChart = function(data){
             	xAxes:[{
             		scaleLabel:{
             			display:true,
-            			labelString:'Date (YYYY-MM-DD HH:mm:ss)',
+            			labelString:'Date (Month Day, Year Hour:Minute AM/PM)',
             			fontStyle:'bold',
             			fontSize:'14'
             		},
@@ -96,7 +96,6 @@ buildChartData = function(labels,temperature,averageTempDataSet,tempselected,hum
 	    		borderColor:'rgba(215, 39, 39, 1)',
 	    		borderWidth:1,
 	    		pointRadius:1,
-	    		pointBackgroundColor:'rgba(0, 0, 0, 1)',
 	    		yAxisID: 'temperature-y-axis',
 	    		showLine:showTemp
 	    	},
@@ -125,12 +124,21 @@ buildChartData = function(labels,temperature,averageTempDataSet,tempselected,hum
 	    }
 }
 document.addEventListener('DOMContentLoaded', (event) => {
+	//calendar
+	$('#rangestart').calendar({
+		type: 'datetime',
+		endCalendar: $('#rangeend'),
+	})
+	$('#rangeend').calendar({
+		type: 'datetime',
+		startCalendar: $('#rangestart')
+	})
 	let from = document.getElementById('from')
 	let to = document.getElementById('to')
 	let now = moment()
 	let nowMinus12Hours = moment().subtract(12, 'hours');
-  	to.value = now.format('YYYY-MM-D HH:mm:ss')
-	from.value =  nowMinus12Hours.format('YYYY-MM-D HH:mm:ss')
+  	to.value = now.format('MMMM D, YYYY h:mm A')
+	from.value =  nowMinus12Hours.format('MMMM D, YYYY h:mm A')
 	getresult()
 })
 var showTemp = function(){

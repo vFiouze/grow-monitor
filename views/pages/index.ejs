@@ -1,16 +1,20 @@
 <% include header %>
 <div class="ui main container">
-	<h1>Grow System Monitor</h1>
+	<h1>Grow Monitoring System</h1>
 	<div class="row" id="search">
 		<div class="ui form">
 			<div class="four fields">
       			<div class="field">
-      				<label>From</label>
-        			<input type="text" id ="from" name="from" placeholder="from">
+	      			<div class="ui calendar" id="rangestart">
+	      				<label>From</label>
+	        			<input type="text" id ="from" name="from" placeholder="from">
+	      			</div>
       			</div>
       			<div class="field">
-      				<label>To</label>
-        			<input type="text" id ="to" name="to" placeholder="to">
+      				<div class="ui calendar" id="rangeend">
+      					<label>To</label>
+        				<input type="text" id ="to" name="to" placeholder="to">
+        			</div>
 				</div>
 				<div class="field">
 					<label>Temperature</label>
