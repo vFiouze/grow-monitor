@@ -23,15 +23,16 @@ class Settings {
 			})
 			this.db.close()
 		}
-		this.save = function(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,fahrenheit,callback){
+		this.save = function(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,fahrenheit,startDate,callback){
 			if(fahrenheit=='on'){
 				tempMinValue=Math.round((tempMinValue-32)*5/9*10)/10
 				tempMaxValue=Math.round((tempMaxValue-32)*5/9*10)/10
 			}
 			this.db.run("UPDATE settings SET minvalue = ?, maxvalue=? WHERE variable = 'temperature'", tempMinValue,tempMaxValue);
 			this.db.run("UPDATE settings SET minvalue = ?, maxvalue=? WHERE variable = 'humidity'", humidMinValue,humidMaxValue);
+			this.db.run("UPDATE settings SET date = ? WHERE variable = 'startgrow'", startDate);
 			this.db.close()
-			callback(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue)
+			callback(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate)
 		}
 	}
 }

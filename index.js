@@ -26,7 +26,7 @@ app.get('/settings',function(req,res){
 	settings = new Settings()
 	settings.get(function(rows){
 		//console.log(rows[0].minvalue)
-		let data = [ rows[0].minvalue, rows[0].maxvalue, rows[1].minvalue, rows[1].maxvalue ]
+		let data = [ rows[0].minvalue, rows[0].maxvalue, rows[1].minvalue, rows[1].maxvalue,rows[2].date ]
 		res.render('pages/settings',{data: data,success:false})
 	})
 })
@@ -39,10 +39,11 @@ app.post('/settings',function(req,res){
 	humidMinValue = req.body.humidMinValue
 	humidMaxValue = req.body.humidMaxValue
 	temp = req.body.fahrenheit
+	startDate=moment(req.body.startgrow).format('YYYY-MM-DD HH:mm:ss')
 	let Settings = require('./api/models/settings.js')
 	settings = new Settings()
-	settings.save(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,temp,function(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue){
-		res.render('pages/settings',{data: [tempMinValue,tempMaxValue,humidMinValue,humidMaxValue],success:true})	
+	settings.save(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,temp,startDate,function(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate){
+		res.render('pages/settings',{data: [tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate],success:true})	
 	})
 	
 })

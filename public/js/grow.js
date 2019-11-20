@@ -154,7 +154,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	      			humidMinValue : 'decimal',
 	      			humidMaxValue : 'decimal',
 				}
-			})
+		})
+		$('#startgrow').calendar({
+			type: 'date'})
   		}
   	})
 var showTemp = function(){
