@@ -18,7 +18,6 @@ plotChart = function(data){
 	if(graph){
 		graph.destroy()	
 	}
-	
 
 	//preparing the dataset
 	var temperature = []
@@ -29,7 +28,7 @@ plotChart = function(data){
 	for (var i = 0; i < data.rows.length; i++) {
 			temperature.push(parseFloat(data.rows[i].temperature))
 			humidity.push(data.rows[i].humidity)
-			labels.push(moment(data.rows[i].date).format('MMMM D, YYYY h:mm A'))
+			labels.push(moment(data.rows[i].date).format('MMMM D, YYYY hh:mm A'))
 			averageTemp = averageTemp+parseFloat(data.rows[i].temperature)
 	}
 	averageTemp = averageTemp/data.rows.length
@@ -124,23 +123,40 @@ buildChartData = function(labels,temperature,averageTempDataSet,tempselected,hum
 	    }
 }
 document.addEventListener('DOMContentLoaded', (event) => {
-	//calendar
-	$('#rangestart').calendar({
-		type: 'datetime',
-		endCalendar: $('#rangeend'),
-	})
-	$('#rangeend').calendar({
-		type: 'datetime',
-		startCalendar: $('#rangestart')
-	})
 	let from = document.getElementById('from')
 	let to = document.getElementById('to')
-	let now = moment()
-	let nowMinus12Hours = moment().subtract(12, 'hours');
-  	to.value = now.format('MMMM D, YYYY h:mm A')
-	from.value =  nowMinus12Hours.format('MMMM D, YYYY h:mm A')
-	getresult()
-})
+	if(from!==null){
+		//calendar
+		$('#rangestart').calendar({
+			type: 'datetime',
+			endCalendar: $('#rangeend'),
+		})
+		$('#rangeend').calendar({
+			type: 'datetime',
+			startCalendar: $('#rangestart'),
+			maxDate: new Date()
+		})
+		
+		let now = moment()
+		let nowMinus12Hours = moment().subtract(12, 'hours');
+		format = 'MMMM D, YYYY hh:mm A'
+	  	to.value = now.format(format)
+		from.value =  nowMinus12Hours.format(format)
+		getresult()
+	}
+	if(document.getElementById('tempMinValue')!==null){
+		minCel =  document.getElementById('tempMinValue').value
+		maxCel = document.getElementById('tempMaxValue').value
+		$('.ui.form').form({
+    			fields: {
+	      			tempMinValue  : 'decimal',
+	      			tempMaxValue  : 'decimal',
+	      			humidMinValue : 'decimal',
+	      			humidMaxValue : 'decimal',
+				}
+			})
+  		}
+  	})
 var showTemp = function(){
 	var checkBoxTemp = document.getElementById('showtemp').checked
 	if(checkBoxTemp==true){
@@ -183,3 +199,19 @@ var showHumid = function(){
 }
 
 var graph = null
+var minCel = null 
+var maxCel = null
+
+var convert = function(){
+	let checkbox = document.getElementById('convertcheck').checked
+	if(checkbox==true){
+		minTemp = Math.round(((minCel * 9/5) + 32)*10)/10
+		maxTemp = Math.round(((maxCel * 9/5) + 32)*10)/10
+		document.getElementById('tempMinValue').value = minTemp
+		document.getElementById('tempMaxValue').value = maxTemp
+	}else{
+		document.getElementById('tempMinValue').value = minCel
+		document.getElementById('tempMaxValue').value = maxCel
+	}
+	
+}
