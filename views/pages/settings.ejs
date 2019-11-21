@@ -12,43 +12,47 @@
 
 
 <div class="ui main container">
-	<form class="ui form" method="POST" action="/settings">
-		<div class="fields">
-	    	<div class="field">
-	    		<label>Temperature min value</label>
-				<input type="text" placeholder="Min Value" id="tempMinValue" name="tempMinValue" value="<%=data[0]%>">
-	    	</div>
-	    	<div class="field">
-	    		<label>Temperature max value</label>
-				<input type="text" placeholder="Max Value" id="tempMaxValue" name="tempMaxValue" value="<%=data[1]%>">
-	    	</div>
-	    	<div class="field">
-	    		<div class="ui checkbox">
-					<input onclick="convert()" type="checkbox" name="fahrenheit" id="convertcheck">
-					<label>Show Fahrenheit</label>
-				</div>
-	    	</div>
-	    </div>
-	    <div class="fields">
-	    	<div class="field">
-	    		<label>Humidity min value</label>
-				<input type="text" placeholder="Min Value" id="humidMinValue" name="humidMinValue" value="<%=data[2]%>">
-	    	</div>
-	    	<div class="field">
-	    		<label>Humidity max value</label>
-				<input type="text" placeholder="Max Value" id="humidMaxValue" name="humidMaxValue" value="<%=data[3]%>">
-	    	</div>
-	    </div>
-	    <div class="fields">
-	    	<div class="field ui calendar" id="startgrow">
-	      		<label>Start of grow</label>
-	        	<input id="startdate" type="text" name="startgrow" value="<%=data[4]%>">
-	      	</div>
-	    </div>
-	    <div class="field">
-	    	<button type="submit" class="ui primary basic button">Save</button>
-	    </div>
-	</form>	
+	<div class="row">
+		
+	
+		<form class="ui form" method="POST" action="/settings">
+			<div class="fields">
+		    	<div class="field">
+		    		<label>Temperature min value</label>
+					<input type="text" placeholder="Min Value" id="tempMinValue" name="tempMinValue" value="<%=data[0]%>">
+		    	</div>
+		    	<div class="field">
+		    		<label>Temperature max value</label>
+					<input type="text" placeholder="Max Value" id="tempMaxValue" name="tempMaxValue" value="<%=data[1]%>">
+		    	</div>
+		    	<div class="field">
+		    		<div class="ui checkbox">
+						<input onclick="convert()" type="checkbox" name="fahrenheit" id="convertcheck">
+						<label>Show Fahrenheit</label>
+					</div>
+		    	</div>
+		    </div>
+		    <div class="fields">
+		    	<div class="field">
+		    		<label>Humidity min value</label>
+					<input type="text" placeholder="Min Value" id="humidMinValue" name="humidMinValue" value="<%=data[2]%>">
+		    	</div>
+		    	<div class="field">
+		    		<label>Humidity max value</label>
+					<input type="text" placeholder="Max Value" id="humidMaxValue" name="humidMaxValue" value="<%=data[3]%>">
+		    	</div>
+		    </div>
+		    <div class="fields">
+		    	<div class="field ui calendar" id="startgrow">
+		      		<label>Start of grow</label>
+		        	<input id="startdate" type="text" name="startgrow" value="<%=data[4]%>">
+		      	</div>
+		    </div>
+		    <div class="field">
+		    	<button type="submit" class="ui primary basic button">Save</button>
+		    </div>
+		</form>
+	</div>
 </div>
 
 <% include footer %>

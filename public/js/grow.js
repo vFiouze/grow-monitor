@@ -126,6 +126,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	let from = document.getElementById('from')
 	let to = document.getElementById('to')
 	if(from!==null){
+		//adding class active itme
+		$('#monitor').addClass('active')
+		$('#settings').removeClass('active')
+
 		//calendar
 		$('#rangestart').calendar({
 			type: 'datetime',
@@ -145,6 +149,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		getresult()
 	}
 	if(document.getElementById('tempMinValue')!==null){
+		$('#settings').addClass('active')
+		$('#monitor').removeClass('active')
+
 		minCel =  document.getElementById('tempMinValue').value
 		maxCel = document.getElementById('tempMaxValue').value
 		$('.ui.form').form({
