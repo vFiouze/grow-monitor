@@ -69,7 +69,7 @@ app.post('/login',function(req,res){
 							{expiresIn:864000})
 			res.status(200).cookie('token',token,{expires:moment().add(10,'days').toDate()}).redirect('/')
 		}else{
-			res.status(200).render('pages/login',{loginSuccess:false})
+			res.status(200).render('pages/login',{loginSuccess:false,login:false})
 		}
 		
 	})
