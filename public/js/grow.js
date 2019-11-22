@@ -1,12 +1,14 @@
 getresult = function(){
-	var from = moment(document.getElementById('from').value).format('YYYY-MM-DD HH:mm:ss')
-	var to = moment(document.getElementById('to').value).format('YYYY-MM-DD HH:mm:ss')
-	var temperature=document.getElementById('temperature')
-	var tempRequest = temperature.options[temperature.selectedIndex].value
-	var myInit = { method: 'POST',
+	let cookie=document.cookie
+	let token=cookie.substring(7,cookie.length)
+	let from = moment(document.getElementById('from').value).format('YYYY-MM-DD HH:mm:ss')
+	let to = moment(document.getElementById('to').value).format('YYYY-MM-DD HH:mm:ss')
+	let temperature=document.getElementById('temperature')
+	let tempRequest = temperature.options[temperature.selectedIndex].value
+	let myInit = { method: 'POST',
                	   headers: {'Accept': 'application/json, text/plain, */*',
                	   			 'Content-Type': 'application/json'},
-  				   body: JSON.stringify({from: from, to: to,temperature:tempRequest})
+  				   body: JSON.stringify({from: from, to: to,temperature:tempRequest,token:token})
                	};
 	fetch('/',myInit)
 	.then(response=>response.json())

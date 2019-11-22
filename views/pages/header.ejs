@@ -12,11 +12,25 @@
         <title>Grow monitor</title>
     </head>
     <body>
-    	<div class="ui pointing menu">
-		 	<a class="item" href="/" id="monitor">
-		  		Monitor
-		  	</a>
-			<a class="item" href ="/settings" id="settings">
-			 	Settings
-			 </a>
+        <div class="ui pointing menu">
+            <a class="item" href="/" id="monitor">
+		  	   Monitor
+            </a>
+            <a class="item" href ="/settings" id="settings">
+                Settings
+            </a>
+            <div class="right menu">
+                <%if(login==false){%>
+                    <a class="ui item" href="/login">
+                        Login
+                    </a>
+                    <a class="ui item" href="/signup">
+                        Sign up
+                    </a>
+                <%}else{%>
+                    <a class="ui item" href="/logout">
+                    Log out
+                    </a>
+                <%}%>
+            </div>
 		</div>

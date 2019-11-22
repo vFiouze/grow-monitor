@@ -1,0 +1,32 @@
+<%include header %>
+<%if(error!=false){%>
+<script type="text/javascript">
+		$('body').toast({
+    		class: 'error',
+    		message: `User already exists`,
+    		position: 'top left',
+  		})
+	</script>
+<%}%>
+<div class="ui grid middle aligned">
+	<div class="ui two column centered grid">
+  		<div class="column">
+  			<form class="ui form" method="POST" action="/signup">
+  				<div class="field">
+					<label>User Name</label>
+					<input id ="name" type="text" name="username" placeholder="User Name">
+				 </div>
+				 <div class="field">
+				   	<label>Password</label>
+				   	<input id="password" type="password" name="password" placeholder="Password">
+				 </div>	
+				 <div class="field">
+				   	<label>Repeat Password</label>
+				   	<input id="repass" type="password" name="repass" placeholder="Repeat Password">
+				 </div>	
+				 <button type="submit" class="ui primary basic button">Sign Up</button>
+			</form>
+  		</div>
+  	</div>
+</div>
+<%include footer %>

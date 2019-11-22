@@ -1,0 +1,28 @@
+<%include header %>
+<%if(loginSuccess==false){%>
+	<script type="text/javascript">
+		$('body').toast({
+    		class: 'error',
+    		message: `Error in the name or password`,
+    		position: 'top left',
+  		})
+	</script>
+<%}%>
+<div class="ui grid middle aligned">
+	<div class="ui two column centered grid">
+  		<div class="column">
+  			<form class="ui form" method="POST" action="/login">
+  				<div class="field">
+					<label>User Name</label>
+					<input id ="name" type="text" name="username" placeholder="User Name">
+				 </div>
+				 <div class="field">
+				   	<label>Password</label>
+				   	<input id="password" type="password" name="password" placeholder="Password">
+				 </div>	
+				 <button type="submit" class="ui primary basic button">Login</button>
+			</form>
+  		</div>
+  	</div>
+</div>
+<%include footer %>
