@@ -120,7 +120,7 @@ if(process.env.ENVIRONEMENT=='dev'){
 		};
 		const httpsServer = https.createServer(credentials, app);
 		httpsServer.listen(3000, () => {
-			console.log('HTTPS Server running on port 3000');
+			console.log('HTTPS Server running on port 3000, with nginx');
 		});
 	}catch(e) {
 		// statements
