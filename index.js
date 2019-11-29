@@ -105,20 +105,26 @@ app.get('/logout',function(req,res){
 if(process.env.ENVIRONEMENT=='dev'){
 	app.listen(3000)	
 }else {
-	const fs = require('fs')
-	const https = require('https')
-	// Certificate
-	const privateKey = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/privkey.pem', 'utf8');
-	const certificate = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/cert.pem', 'utf8');
-	const ca = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/chain.pem', 'utf8');
+	try{
+		const fs = require('fs')
+		const https = require('https')
+		// Certificate
+		const privateKey = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/privkey.pem', 'utf8');
+		const certificate = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/cert.pem', 'utf8');
+		const ca = fs.readFileSync('/etc/letsencrypt/live/fiouze.ddns.net/chain.pem', 'utf8');
 
-	const credentials = {
-		key: privateKey,
-		cert: certificate,
-		ca: ca
-	};
-	const httpsServer = https.createServer(credentials, app);
-	httpsServer.listen(443, () => {
-		console.log('HTTPS Server running on port 443');
-	});
+		const credentials = {
+			key: privateKey,
+			cert: certificate,
+			ca: ca
+		};
+		const httpsServer = https.createServer(credentials, app);
+		httpsServer.listen(443, () => {
+			console.log('HTTPS Server running on port 443');
+		});
+	}catch(e) {
+		// statements
+		console.log(e);
+	}
+	
 }
