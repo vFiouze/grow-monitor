@@ -102,11 +102,11 @@ app.get('/logout',function(req,res){
 	res.clearCookie('token').redirect('/')
 })
 
-app.get('/changepassword',function(req,res){
+app.get('/changepassword',checkAuth,function(req,res){
 	return res.status(200).render('pages/changepassword',{success:false,login:true,message:false})
 })
 
-app.post('/changepassword',function(req,res){
+app.post('/changepassword',checkAuth,function(req,res){
 	let User = require('./api/models/user.js')
 	user = new User()
 	let password = bcrypt.hashSync(req.body.password,10)
