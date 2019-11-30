@@ -131,6 +131,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		//adding class active itme
 		$('#monitor').addClass('active')
 		$('#settings').removeClass('active')
+		$('#changepassword').removeClass('active')
 
 		//calendar
 		$('#rangestart').calendar({
@@ -153,6 +154,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	if(document.getElementById('tempMinValue')!==null){
 		$('#settings').addClass('active')
 		$('#monitor').removeClass('active')
+		$('#changepassword').removeClass('active')
+		
 
 		minCel =  document.getElementById('tempMinValue').value
 		maxCel = document.getElementById('tempMaxValue').value
@@ -175,7 +178,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	      			password:'empty'
 	      		}
 	      })
+
   	}
+	if(document.getElementById('repass')!=null){
+  		$('#monitor').removeClass('active')
+		$('#settings').removeClass('active')
+		$('#changepassword').addClass('active')
+		$('.ui.form').form({
+    			fields: {
+    				match:{
+    					identifier:"password",
+    					rules:[{
+    						type: 'match[repass]',
+    						prompt:'Both password are not equal'
+    					},
+    					{
+    						type: 'empty',
+    						prompt:'Fill password fields'
+    					}]
+    				}
+	      		}
+	      	})
+	}
 
 
   	})

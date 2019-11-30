@@ -102,6 +102,22 @@ app.get('/logout',function(req,res){
 	res.clearCookie('token').redirect('/')
 })
 
+app.get('/changepassword',function(req,res){
+	return res.status(200).render('pages/changepassword',{success:false,login:true,message:false})
+})
+
+app.post('/changepassword',function(req,res){
+	let User = require('./api/models/user.js')
+	user = new User()
+	let password = bcrypt.hashSync(req.body.password,10)
+	//get the user from the token
+	let username = jwt.decode(req.cookies.token).username
+	user.updatePassword(password,username,function(){
+		return res.status(200).render('pages/changepassword',{success:false,login:true,message:true})
+	})
+	
+})
+
 if(process.env.ENVIRONEMENT=='dev'){
 	app.listen(3000)	
 }else {

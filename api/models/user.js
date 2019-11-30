@@ -35,6 +35,13 @@ class User {
 			})
 			this.db.close()
 		}
+
+		this.updatePassword = function(password,user,callback){
+			this.db.all('UPDATE users set password=? where user = ?',password,user,function(err, rows){
+				callback()
+			})
+			this.db.close()
+		}
 	}
 }
 
