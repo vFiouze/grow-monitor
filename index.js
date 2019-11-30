@@ -48,7 +48,7 @@ app.post('/settings',checkAuth,function(req,res){
 	let Settings = require('./api/models/settings.js')
 	settings = new Settings()
 	settings.save(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,temp,startDate,function(tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate){
-		res.status(200).render('pages/settings',{data: [tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate],success:true})	
+		res.status(200).render('pages/settings',{data: [tempMinValue,tempMaxValue,humidMinValue,humidMaxValue,startDate],success:true,login:true})	
 	})	
 })
 

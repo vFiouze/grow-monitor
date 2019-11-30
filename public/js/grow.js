@@ -167,6 +167,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		$('#startgrow').calendar({
 			type: 'date'})
   		}
+
+  	if(document.getElementById('login')!=null){
+  		$('.ui.form').form({
+    			fields: {
+	      			name  : 'empty',
+	      			password:'empty'
+	      		}
+	      })
+  	}
+
+
   	})
 var showTemp = function(){
 	var checkBoxTemp = document.getElementById('showtemp').checked
@@ -226,3 +237,4 @@ var convert = function(){
 	}
 	
 }
+

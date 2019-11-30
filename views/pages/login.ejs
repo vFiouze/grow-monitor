@@ -1,4 +1,4 @@
-<%include header %>
+<%- include ('header') %>
 <%if(loginSuccess==false){%>
 	<script type="text/javascript">
 		$('body').toast({
@@ -8,10 +8,11 @@
   		})
 	</script>
 <%}%>
+
 <div class="ui grid middle aligned">
 	<div class="ui two column centered grid">
   		<div class="column">
-  			<form class="ui form" method="POST" action="/login">
+  			<form id="login" class="ui form" method="POST" action="/login">
   				<div class="field">
 					<label>User Name</label>
 					<input id ="name" type="text" name="username" placeholder="User Name">
@@ -20,9 +21,9 @@
 				   	<label>Password</label>
 				   	<input id="password" type="password" name="password" placeholder="Password">
 				 </div>	
-				 <button type="submit" class="ui primary basic button">Login</button>
+				 <button type="submit" onclick="checkLogin()" class="ui primary basic button">Login</button>
 			</form>
   		</div>
   	</div>
 </div>
-<%include footer %>
+<%- include ('footer') %>
