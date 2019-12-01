@@ -62,16 +62,19 @@ app.post('/login',function(req,res){
 	let User = require('./api/models/user.js')
 	user = new User()
 	user.get(username,function(rows){
-		if(bcrypt.compareSync(password,rows[0].password)){
-			//issue token.
-			token = jwt.sign({username:username},
-							process.env.JWT_KEY,
-							{expiresIn:864000})
-			res.status(200).cookie('token',token,{expires:moment().add(10,'days').toDate()}).redirect('/')
-		}else{
+		if(rows.length==0){
 			res.status(200).render('pages/login',{loginSuccess:false,login:false})
+		}else{
+			if(bcrypt.compareSync(password,rows[0].password)){
+				//issue token.
+				token = jwt.sign({username:username},
+								process.env.JWT_KEY,
+								{expiresIn:864000})
+				res.status(200).cookie('token',token,{expires:moment().add(10,'days').toDate()}).redirect('/')
+			}else{
+				res.status(200).render('pages/login',{loginSuccess:false,login:false})
+			}
 		}
-		
 	})
 })
 
